@@ -13,7 +13,7 @@ namespace FormsApp.Models
             _categories.Add(new Category { categoryId = 1, categoryName = "Phone" });
             _categories.Add(new Category { categoryId = 2, categoryName = "Computer" });
 
-            _products.Add(new Product { ProductId = 1, Name = "Samsung Galaxy S21", Price = 18000, Image = "samsung.jpg", isActive = true, CategoryId = 1 });
+            _products.Add(new Product { ProductId = 1, Name = "Samsung Galaxy S21", Price = 18000, Image = "samsung21.jpg", isActive = true, CategoryId = 1 });
             _products.Add(new Product { ProductId = 2, Name = "Iphone 12", Price = 60000, Image = "iphone12.jpg", isActive = true, CategoryId = 1 });
             _products.Add(new Product { ProductId = 3, Name = "Iphone 13",Price = 70000, Image = "iphone13.jpg", isActive = true, CategoryId = 1 });
            
