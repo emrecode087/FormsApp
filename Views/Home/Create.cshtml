@@ -4,6 +4,7 @@
 }
 
 <form asp-controller="Home" asp-action="Create" method="post">
+	<div asp-validation-summary="All" class="text-danger"></div>
     <div class="mb-3 form-group">
 		<label class="form-label" asp-for="Name"></label>
 		<input class="form-control" asp-for="Name" />

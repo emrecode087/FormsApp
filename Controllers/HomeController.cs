@@ -54,8 +54,11 @@ namespace FormsApp.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+                product.ProductId = Repository.Products.Count+1;
+                Repository.CreateProduct(product);
+                return RedirectToAction("Index");
             }
+            ViewBag.Categories = new SelectList(Repository.Categories, "categoryId", "categoryName");
             return View(product);
         }
     }

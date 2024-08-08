@@ -18,13 +18,18 @@ namespace FormsApp.Models
             _products.Add(new Product { ProductId = 3, Name = "Iphone 13",Price = 70000, Image = "iphone13.jpg", isActive = true, CategoryId = 1 });
            
             
-            _products.Add(new Product { ProductId = 3, Name = "Dell XPS 13", Price = 25000, Image = "dell.jpg", isActive = true, CategoryId = 2 });
-            _products.Add(new Product { ProductId = 4, Name = "Macbook Pro", Price = 60000, Image = "macbook.jpg", isActive = true, CategoryId = 2 });
+            _products.Add(new Product { ProductId = 4, Name = "Dell XPS 13", Price = 25000, Image = "dell.jpg", isActive = true, CategoryId = 2 });
+            _products.Add(new Product { ProductId = 5, Name = "Macbook Pro", Price = 60000, Image = "macbook.jpg", isActive = true, CategoryId = 2 });
         }
 
         public static List<Product> Products 
         {
            get { return _products; }
+        }
+        
+        public static void CreateProduct(Product product)
+        {
+            _products.Add(product);
         }
 
         public static List<Category> Categories
