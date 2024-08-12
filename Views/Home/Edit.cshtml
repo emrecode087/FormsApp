@@ -4,8 +4,9 @@
 }
 
 <form asp-controller="Home" asp-action="Edit" method="post" enctype="multipart/form-data">
-	<div asp-validation-summary="All" class="text-danger">
-	</div>
+	<div asp-validation-summary="All" class="text-danger"></div>
+	<input type="hidden" asp-for="Id"/>
+	
 	<div class="mb-3 form-group">
 		<label class="form-label" asp-for="Name"></label>
 		<input class="form-control" asp-for="Name" />
