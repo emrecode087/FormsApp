@@ -41,7 +41,7 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th style="width:100px">@Html.DisplayNameFor(m => m.Products[0].ProductId)</th>
+            <th style="width:100px">@Html.DisplayNameFor(m => m.Products[0].Id)</th>
             <th style="width:100px">@Html.DisplayNameFor(m => m.Products[0].Image)</th>
             <th>@Html.DisplayNameFor(m => m.Products[0].Name)</th>
             <th style="width:100px">@Html.DisplayNameFor(m => m.Products[0].Price)</th>
@@ -52,15 +52,15 @@
         @foreach (var item in Model.Products)
         {
             <tr>
-                <td>@item.ProductId</td>
+                <td>@item.Id</td>
                 <td>
                     <img src="~/img/@item.Image" class="img-fluid" alt="" />
                 </td>
                 <td>@item.Name</td>
                 <td>@item.Price</td>
                 <td>
-                    <a href="" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/Home/Edit/@item.Id" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-controller="Home" asp-action="Delete" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }
