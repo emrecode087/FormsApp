@@ -14,7 +14,8 @@ public class HomeController : Controller
 		if (!string.IsNullOrEmpty(searchString))
 		{
 			ViewBag.SearchString = searchString;
-			products = products.Where(s => s.Name.Contains(searchString)).ToList();
+			products = products.Where(s => 
+				s.Name.Contains(searchString)).ToList();
 		}
 
 		if (!string.IsNullOrEmpty(category) && category != "0")
@@ -42,16 +43,59 @@ public class HomeController : Controller
 	}
 
 	[HttpPost]
-	public IActionResult Create(Product product, IFormFile imageFile)
+	public async Task<IActionResult> Create(Product product, IFormFile imageFile)
 	{
+		var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+		var extension = Path.GetExtension(imageFile.FileName);	//abc.jpg
+		var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
+		var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
+
+		if (imageFile != null)
+		{
+			if (!allowedExtensions.Contains(extension))
+			{
+				ModelState.AddModelError("","Geçerli bir resim seçiniz.");
+			}
+		}
+
 		if (ModelState.IsValid)
 		{
-			product.ProductId = Repository.Products.Count + 1;
+			if (imageFile != null)
+			{
+				using (var stream = new FileStream(path, FileMode.Create))
+				{
+					await imageFile.CopyToAsync(stream);
+				}
+			}
+			product.Image = randomFileName;
+			product.Id = Repository.Products.Count + 1;
 			Repository.CreateProduct(product);
 			return RedirectToAction("Index");
 		}
 
 		ViewBag.Categories = new SelectList(Repository.Categories, "categoryId", "categoryName");
 		return View(product);
+	}
+
+	public IActionResult Edit(int? id)
+	{
+		if (id == null)
+		{
+			return NotFound();
+		}
+		var entity = Repository.Products.FirstOrDefault(p => p.Id == id);
+		
+		if (entity == null)
+		{
+			return NotFound();
+		}
+
+		ViewBag.Category = new SelectList(Repository.Categories, "categoryId", "Name");
+		return View(entity);
+	}
+
+	public IActionResult Delete()
+	{
+		throw new NotImplementedException();
 	}
 }

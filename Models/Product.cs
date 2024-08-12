@@ -6,7 +6,7 @@ namespace FormsApp.Models
     {
         [Required]
         [Display(Name = "Product Id")]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
 		[Required(ErrorMessage = "Please enter a name")]
 		[Display(Name = "Name")]
@@ -26,5 +26,6 @@ namespace FormsApp.Models
 		[Display(Name = "Category")]
 		[Required(ErrorMessage = "Please select a category")]
 		public int? CategoryId { get; set; }
+
     }
 }
